@@ -1,0 +1,159 @@
+<html>
+<body>
+<style>
+.a
+{
+background-color:rgb(32,32,32);
+height:300px;
+width:200px;
+border-radius:10px;
+position:relative;
+top:80px;
+left:40%;
+}
+.b
+{
+background-color:rgb(128,128,128);
+height:300px;
+width:57px;
+border-radius:10px;
+position:relative;
+top:0px;
+left:80%;
+}
+.c
+{
+background-color:rgb(14,250,80);
+height:300px;
+width:13px;
+border-radius:10px;
+position:relative;
+top:0px;
+left:80%;
+}
+.d
+{
+background-color:white;
+width:210px;
+position:relative;
+left:-205px;
+top:0px;
+height:50px;
+}
+.d input
+{
+position:relative;
+left:0px;
+top:0px;
+height:50px;
+color:black;
+background-color:white;
+font-size:20px;
+text-align:right;
+} 
+.k
+{
+position:fixed;
+top:120px;
+left:40.5%;
+}
+.button
+{
+width:40px;
+height:30px;
+border:none;
+border-radius: 5px;
+margin-left:7px;
+margin-top: 7px;
+margin-right: 0px;
+margin-bottom: 0px;
+cursor:pointer;
+border-top:2px solid transparent;
+}
+
+
+
+
+</style>
+<form name="calc">
+  <div class="a">
+<div class="b">
+<div class="c">
+
+  <div class="d"><input type="text" readonly size="17" name="display" value="0" ></div>
+<div class="k">
+
+<p>
+<input type="button" value="7" class="button black"onclick="addChar(this.form.display, '7')">
+<input type="button" value="8" class="button black"onclick="addChar(this.form.display, '8')">
+<input type="button" value="9" class="button black"onclick="addChar(this.form.display, '9')">
+<input type="button" value="CLR" class="button grey" onclick="deleteChar(this.form.display)">
+</p>
+<p>
+<input type="button" value=" 4" class="button black"onclick="addChar(this.form.display, '4')">
+<input type="button" value=" 5" class="button black"onclick="addChar(this.form.display, '5')">
+<input type="button" value=" 6" class="button black"onclick="addChar(this.form.display, '6')">
+<input type="button" value=" /" class="button black"onclick="addChar(this.form.display, '/')">
+</p>
+<p>
+<input type="button" value="1" class="button black"onclick="addChar(this.form.display, '1')">
+<input type="button" value="2" class="button black"onclick="addChar(this.form.display, '2')">
+<input type="button" value="3" class="button black"onclick="addChar(this.form.display, '3')">
+<input type="button" value="*" class="button black"onclick="addChar(this.form.display, '*')">
+</p>
+<p>
+<input type="button" value="." class="button black"onclick="addChar(this.form.display, '.')">
+<input type="button" value="0" class="button black"onclick="addChar(this.form.display, '0')">
+<input type="button" VALUE="=" class="button orange" name="enter" onclick="if (checkNum(this.form.display.value)) { compute(this.form) }">
+<input type="button" value="-" class="button black"onclick="addChar(this.form.display, '-')">
+</p>
+<p>
+<input type="button" value="exp" class="button black" onclick="if (checkNum(this.form.display.value)) { exp(this.form) }">
+<input type="button" value="ln" class="button black" onclick="if (checkNum(this.form.display.value)) { ln(this.form) }">
+<input type="button" value="sqrt" class="button black" onclick="if (checkNum(this.form.display.value)) { sqrt(this.form) }">
+<input type="button" value="+" class="button black"onclick="addChar(this.form.display, '+')">
+</p>
+</body>
+</form>
+<head>
+
+<script language="JavaScript">
+function addChar(input, character) {
+  if(input.value == null || input.value == "0")
+    input.value = character
+  else
+    input.value += character
+}
+
+function sqrt(form) {
+  form.display.value = Math.sqrt(form.display.value);
+}
+function ln(form) {
+  form.display.value = Math.log(form.display.value);
+}
+function exp(form) {
+  form.display.value = Math.exp(form.display.value);
+}
+function deleteChar(input) {
+  input.value = input.value.substring(0, input.value.length - 1)
+}
+function compute(form) {
+  form.display.value = eval(form.display.value)
+}
+function checkNum(str) {
+  for (var i = 0; i < str.length; i++) {
+    var ch = str.substring(i, i+1)
+    if (ch < "0" || ch > "9") {
+      if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "."
+        && ch != "(" && ch!= ")") {
+        alert("invalid entry!")
+        return false
+        }
+      }
+    }
+    return true
+}
+
+</script>
+</head>
+</html>
